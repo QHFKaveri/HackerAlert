@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Security Alert — Action Required</title>
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --accent: #ff4d4f;
+      --accent-2: #08b89a;
+      --muted: #9aa6b2
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      background: url("C:/Users/swara/OneDrive/Desktop/Sem 5/QHf/pngtree-a-hacker-in-a-hoodie-sitting-at-a-laptop-with-hologram-image_16394239.jpg") 
+                  no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      font-family: Inter, Segoe UI, Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+      color: #e6eef6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px
+    }
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #ff8a6b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #101010
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.6rem
+    }
+
+    p.lead {
+      color: var(--muted);
+      margin-top: 6px
+    }
+
+    .card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 18px
+    }
+
+    .alert-big {
+      background: linear-gradient(90deg, rgba(255, 77, 79, 0.12), rgba(255, 120, 120, 0.06));
+      border: 1px solid rgba(255, 77, 79, 0.18);
+      padding: 16px;
+      border-radius: 10px;
+      display: flex;
+      gap: 12px;
+      align-items: center
+    }
+
+    .alert-big svg {
+      width: 48px;
+      height: 48px
+    }
+
+    .alert-big h2 {
+      margin: 0;
+      color: var(--accent)
+    }
+
+    .muted {
+      color: var(--muted)
+    }
+
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .cta {
+      display: inline-flex;
+      gap: 12px;
+      margin-top: 16px
+    }
+
+    button.btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted)
+    }
+
+    /* Game area */
+    #gameArea {
+      min-height: 280px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px
+    }
+
+    .game-board {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+      height: 320px;
+      background: linear-gradient(180deg, #07162a, #06111e);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      overflow: hidden
+    }
+
+    .virus {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      user-select: none
+    }
+
+    .virus svg {
+      width: 36px;
+      height: 36px
+    }
+
+    .status {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 12px
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-weight: 600
+    }
+
+    /* Result */
+    #resultArea {
+      display: none;
+      padding: 18px;
+      text-align: center
+    }
+
+    .downloadBox {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(8, 184, 154, 0.06), rgba(8, 184, 154, 0.03));
+      border: 1px solid rgba(8, 184, 154, 0.12)
+    }
+
+    a.app-btn {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: var(--accent-2);
+      color: white;
+      text-decoration: none;
+      font-weight: 700
+    }
+
+    footer {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    @media (max-width:640px) {
+      .game-board {
+        height: 260px
+      }
+
+      .virus {
+        width: 48px;
+        height: 48px
+      }
+
+      .logo {
+        width: 52px;
+        height: 52px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" role="main">
+    <header>
+      <div class="logo">KF</div>
+      <div>
+        <h1>Security Alert</h1>
+        <p class="lead">This device looks compromised. Follow the steps below to secure your device.</p>
+      </div>
+    </header>
+
+    <div class="card">
+      <div id="landing">
+        <div class="alert-big" aria-live="polite">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2v6" stroke="#ff4d4f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M20 12h-6" stroke="#ff4d4f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4 12h6" stroke="#ff4d4f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 22v-6" stroke="#ff4d4f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div>
+            <h2>You have been hacked</h2>
+            <p class="muted">Your device shows suspicious activity. Click below to run a quick protection routine.</p>
+          </div>
+        </div>
+
+        <div class="center cta">
+          <button class="btn btn-primary" id="startBtn">Protect my device</button>
+          <button class="btn btn-ghost" id="learnBtn">Learn what happened</button>
+        </div>
+      </div>
+
+      <!-- Game area -->
+      <div id="gameArea" class="card" aria-hidden="true">
+        <h3 style="margin:0 0 8px 0">Quick Threat Cleanup</h3>
+        <p class="muted" style="margin:0 0 12px 0">Click on the threats before the timer ends. Each click removes a
+          threat. Reach 12 removals to finish.</p>
+
+        <div class="game-board" id="board" aria-label="Threats game" role="application"></div>
+
+        <div class="status">
+          <div class="pill" id="score">Removed: 0</div>
+          <div class="pill" id="targets">Targets left: 12</div>
+          <div class="pill" id="timer">Time: 30s</div>
+        </div>
+
+        <div style="margin-top:12px" class="center">
+          <button class="btn btn-ghost" id="restartBtn">Restart</button>
+        </div>
+      </div>
+
+      <!-- Result area -->
+      <div id="resultArea" aria-hidden="true">
+        <h2 style="color:var(--accent-2)">Your device is now protected ✅</h2>
+        <p class="muted">We ran a simulated cleanup and removed obvious threats. For continuous protection, install the
+          recommended security app below.</p>
+
+        <div class="downloadBox">
+          <strong>Recommended:</strong>
+          <div style="margin-top:8px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center">
+            <a id="appLink" class="app-btn" href="#">Download AntiFraud.AI (1-month free)</a>
+            <div class="downloadBox" style="text-align:center; padding:16px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.08); max-width:420px; margin:0 auto;">
+  <strong>Recommended:</strong>
+  <div style="margin-top:8px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center">
+
+    <!-- Generate button -->
+    <button id="generateBtn" type="button" style="padding:10px 14px; border-radius:6px; border:1px solid #ccc; background:#fff; cursor:pointer;">
+      Generate Code
+    </button>
+
+    <!-- Use / Copy button (disabled until code generated) -->
+    <button id="useBtn" type="button" disabled style="padding:10px 14px; border-radius:6px; border:1px solid #ccc; background:#f4f4f4; cursor:not-allowed;">
+      Copy / Use Code
+    </button>
+  </div>
+
+  <!-- Visual area for generated code + small hint -->
+  <div id="codeArea" aria-live="polite" style="margin-top:10px; font-family:monospace; font-size:1.05rem; color:#111;">
+    <!-- Empty until code generated -->
+    <span class="muted" style="color:#666;">No code generated yet</span>
+  </div>
+
+  <!-- Optional: small note -->
+  <p class="muted" style="margin-top:8px; color:#666; font-size:0.9rem;">
+    Click <strong>Generate Code</strong> to get a one-month activation code — then copy and use it.
+  </p>
+</div>
+
+<script>
+  (function () {
+    // === CONFIG: put your pool of codes here ===
+    // You can replace or extend this array with whatever codes you want.
+    const CODE_POOL = [
+      "CW321","CW322","CW323","CW324","CW325",
+      "CW326","CW327","CW328","CW329","CW330"
+    ];
+    // ==========================================
+
+    // DOM refs
+    const generateBtn = document.getElementById('generateBtn');
+    const useBtn = document.getElementById('useBtn');
+    const codeArea = document.getElementById('codeArea');
+    const appLink = document.getElementById('appLink');
+
+    // Helper: choose random item from array
+    function randomFrom(arr) {
+      if (!arr || arr.length === 0) return null;
+      const idx = Math.floor(Math.random() * arr.length);
+      return arr[idx];
+    }
+
+    // When user clicks Generate Code
+    generateBtn.addEventListener('click', function () {
+      const code = randomFrom(CODE_POOL);
+      if (!code) {
+        codeArea.innerHTML = '<span style="color:#b00;">No codes available</span>';
+        useBtn.disabled = true;
+        useBtn.style.cursor = 'not-allowed';
+        return;
+      }
+
+      // Show the generated code (visually prominent)
+      codeArea.innerHTML = '<span style="display:inline-block; padding:8px 12px; border-radius:6px; background:#f7f9ff; border:1px dashed #cfe0ff;">'
+        + '<strong>' + code + '</strong>'
+        + '</span>';
+
+      // Enable the Use/Copy button
+      useBtn.disabled = false;
+      useBtn.style.cursor = 'pointer';
+      useBtn.style.background = '#fff';
+
+      // Update the download link to include the code as a query parameter (optional)
+      // Example: the link will become "https://example.com/download?code=CW321"
+      // Replace the base URL below with your real download URL if desired.
+      const baseUrl = 'https://example.com/download'; // <-- change to your real link if needed
+      // encodeURIComponent to be safe for special characters
+      appLink.href = baseUrl + '?code=' + encodeURIComponent(code);
+
+      // For accessibility, focus the use button so keyboard users can copy quickly
+      useBtn.focus();
+    });
+
+    // Copy to clipboard + quick feedback
+    useBtn.addEventListener('click', function () {
+      // Get the currently displayed code text
+      const currentCodeEl = codeArea.querySelector('strong');
+      if (!currentCodeEl) return;
+
+      const code = currentCodeEl.textContent.trim();
+      if (!navigator.clipboard) {
+        // Fallback for very old browsers: select + execCommand (not reliable)
+        const textarea = document.createElement('textarea');
+        textarea.value = code;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        try { document.execCommand('copy'); } catch (e) { /* ignore */ }
+        document.body.removeChild(textarea);
+        showCopyFeedback();
+        return;
+      }
+
+      navigator.clipboard.writeText(code)
+        .then(() => {
+          showCopyFeedback();
+        })
+        .catch(() => {
+          // If clipboard fails, still show feedback
+          showCopyFeedback(false);
+        });
+    });
+
+    // Small visual feedback after copy
+    function showCopyFeedback(success = true) {
+      const old = useBtn.innerText;
+      useBtn.innerText = success ? 'Copied!' : 'Copied (try manually)';
+      useBtn.style.background = success ? '#e6ffed' : '#fff3cd';
+      setTimeout(() => {
+        useBtn.innerText = 'Copy / Use Code';
+        useBtn.style.background = '#fff';
+      }, 1200);
+    }
+
+    // Optional: if you want to avoid showing the base link when no code present,
+    // you could disable the main download link until a code is generated.
+    // Example below (uncomment to enable):
+    /*
+    appLink.addEventListener('click', function(e){
+      if (appLink.href === '#' || appLink.href.includes('example.com/download?code=')) return;
+      // prevent default if no code present
+      e.preventDefault();
+      alert('Please generate and copy a code first.');
+    });
+    */
+  })();
+</script>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <small>Note: This is a safe, simulated demo to raise awareness. It does not actually access or change your
+          device. This interaction helps you learn how threats look and how to respond.</small>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Simple interactive "whack-the-virus" game
+    const startBtn = document.getElementById('startBtn');
+    const learnBtn = document.getElementById('learnBtn');
+    const landing = document.getElementById('landing');
+    const gameArea = document.getElementById('gameArea');
+    const board = document.getElementById('board');
+    const scoreEl = document.getElementById('score');
+    const targetsEl = document.getElementById('targets');
+    const timerEl = document.getElementById('timer');
+    const resultArea = document.getElementById('resultArea');
+    const restartBtn = document.getElementById('restartBtn');
+    const appLink = document.getElementById('appLink');
+
+    // Customize these values as needed
+    let targetsToRemove = 7;
+    let timeLimit = 15; // seconds
+    let score = 0;
+    let timeLeft = timeLimit;
+    let gameInterval, spawnInterval, countdownInterval;
+
+    function showLanding() { landing.style.display = 'block'; gameArea.style.display = 'none'; resultArea.style.display = 'none'; landing.setAttribute('aria-hidden', 'false'); gameArea.setAttribute('aria-hidden', 'true'); resultArea.setAttribute('aria-hidden', 'true') }
+    function showGame() { landing.style.display = 'none'; gameArea.style.display = 'flex'; resultArea.style.display = 'none'; landing.setAttribute('aria-hidden', 'true'); gameArea.setAttribute('aria-hidden', 'false') }
+    function showResult() { landing.style.display = 'none'; gameArea.style.display = 'none'; resultArea.style.display = 'block'; landing.setAttribute('aria-hidden', 'true'); gameArea.setAttribute('aria-hidden', 'true'); resultArea.setAttribute('aria-hidden', 'false') }
+
+    function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min }
+
+    function createVirus() {
+      const v = document.createElement('div');
+      v.className = 'virus';
+      const colors = ['#ff6b6b', '#ff9f43', '#f368e0', '#ff6b6b', '#6c5ce7'];
+      const c = colors[rand(0, colors.length - 1)];
+      v.style.background = c;
+      // random position inside board
+      const bw = board.clientWidth; const bh = board.clientHeight;
+      const w = rand(36, 60);
+      const x = rand(8, Math.max(8, bw - w - 8));
+      const y = rand(8, Math.max(8, bh - w - 8));
+      v.style.left = x + 'px'; v.style.top = y + 'px'; v.style.width = w + 'px'; v.style.height = w + 'px';
+      v.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 8v4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 12h8" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      `;
+      // click action
+      v.addEventListener('click', (e) => {
+        e.stopPropagation();
+        removeVirus(v, true);
+      });
+      board.appendChild(v);
+      // auto-remove after some seconds (they might disappear)
+      setTimeout(() => { if (board.contains(v)) removeVirus(v, false); }, rand(2800, 5200));
+    }
+
+    function removeVirus(el, clicked) {
+      if (!board.contains(el)) return;
+      el.style.transform = 'scale(0.8)'; el.style.opacity = 0; setTimeout(() => el.remove(), 220);
+      if (clicked) {
+        score++; updateStatus();
+        if (score >= targetsToRemove) endGame(true);
+      }
+    }
+
+    function updateStatus() {
+      scoreEl.textContent = 'Removed: ' + score;
+      targetsEl.textContent = 'Targets left: ' + Math.max(0, targetsToRemove - score);
+    }
+
+    function startGame() {
+      // reset
+      board.innerHTML = '';
+      score = 0; timeLeft = timeLimit;
+      updateStatus(); timerEl.textContent = 'Time: ' + timeLeft + 's';
+
+      showGame();
+
+      // spawn viruses every 700-1100ms
+      spawnInterval = setInterval(() => { createVirus(); }, 900);
+      countdownInterval = setInterval(() => {
+        timeLeft--; timerEl.textContent = 'Time: ' + timeLeft + 's';
+        if (timeLeft <= 0) endGame(false);
+      }, 1000);
+
+      // also a safety auto-spawn (in case of loss of focus)
+    }
+
+    function endGame(won) {
+      clearInterval(spawnInterval); clearInterval(countdownInterval);
+      // remove remaining viruses
+      const kids = Array.from(board.querySelectorAll('.virus'));
+      kids.forEach(k => k.remove());
+      if (won) {
+        // show success
+        showResult();
+      } else {
+        // show fail message and offer retry
+        // reuse result area but change message
+        resultArea.querySelector('h2').textContent = 'Cleanup incomplete ⚠️';
+        resultArea.querySelector('p').textContent = 'You missed some threats. Try again to complete the cleanup and protect your device.';
+        showResult();
+      }
+    }
+
+    // Event listeners
+    startBtn.addEventListener('click', () => {
+      // start animation: hide landing
+      startGame();
+      // reset result text if changed
+      resultArea.querySelector('h2').textContent = 'Your device is now protected ✅';
+      resultArea.querySelector('p').textContent = 'We ran a simulated cleanup and removed obvious threats. For continuous protection, install the recommended security app below.';
+    });
+
+    learnBtn.addEventListener('click', () => {
+      window.location.href = "C:/Users/swara/OneDrive/Desktop/Sem 5/WT/Learnwhathappend.html";
+    });
+
+
+    restartBtn.addEventListener('click', () => {
+      // restart: show landing or re-run
+      startGame();
+    });
+
+    // mock app link - replace with real store link
+    appLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      // replace the '#' with your app's real download URL, or Google Play / App Store links
+      const storeUrl = '#';
+      if (storeUrl === '#') {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.quickheal.antifraud&pcampaignid=web_share";
+      } else {
+        window.location.href = storeUrl;
+      }
+    });
+
+    // initialize
+    showLanding();
+  </script>
+</body>
+
+</html>
